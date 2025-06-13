@@ -1,46 +1,140 @@
-# Getting Started with Create React App
+# HITL Interface - AI Teammate Workflow Builder
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A Human-in-the-Loop interface for an AI teammate product that allows users to create, edit, and approve AI-generated workflows with natural language input.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+### Core Features
+- Natural language input for task descriptions
+- AI workflow generation with realistic mock responses
+- Full CRUD operations on workflow steps (edit, delete, reorder)
+- Individual step revision with AI assistance
+- Final confirmation screen for workflow approval
+- Comprehensive error handling and loading states
+- Responsive design for desktop and mobile
 
-### `npm start`
+### Bonus Features
+- **Undo/Redo System**: Complete history tracking with keyboard shortcuts (Ctrl+Z/Ctrl+Y)
+- **Enhanced AI Agent Indicators**: Color-coded badges with unique icons for different agent types
+- **Advanced Confidence Display**: Visual confidence indicators with icons and color coding
+- **Real-time History**: Shows last action taken with visual feedback
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Technical Architecture
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Frontend Stack
+- **React 18** with TypeScript for type safety
+- **Tailwind CSS** for styling and responsive design
+- **React Context + useReducer** for centralized state management
+- **Error Boundary** for production-ready error handling
 
-### `npm test`
+### Project Structure
+```
+src/
+├── components/           # React components
+│   ├── InputScreen.tsx      # Natural language input interface
+│   ├── WorkflowScreen.tsx   # Main workflow editing interface
+│   ├── WorkflowStep.tsx     # Individual step component with editing
+│   ├── ConfirmationScreen.tsx # Final review and approval
+│   ├── LoadingScreen.tsx    # Loading states with animations
+│   ├── ErrorDisplay.tsx     # Error handling component
+│   └── ErrorBoundary.tsx    # Global error boundary
+├── context/             # State management
+│   └── AppContext.tsx       # Global app state with undo/redo
+├── services/            # External services
+│   └── aiService.ts         # Mock AI responses with delays
+├── types/               # TypeScript definitions
+│   └── index.ts             # All interface definitions
+└── App.tsx              # Main application component
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### State Management
+- **AppContext**: Centralized state using React Context + useReducer
+- **History System**: Complete undo/redo with action tracking
+- **Type Safety**: Full TypeScript coverage for all components and state
 
-### `npm run build`
+### Mock AI Service
+- Contextual responses based on input keywords (CRM, email, marketing)
+- Realistic processing delays (1-3 seconds)
+- Confidence scoring and error simulation
+- Agent assignment and tool selection
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## User Experience
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Workflow Creation Process
+1. **Input Screen**: Natural language task description with sample prompts
+2. **Workflow Screen**: Generated steps with editing capabilities
+3. **Confirmation Screen**: Final review with workflow statistics
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Interaction Features
+- **Step Management**: Edit titles, descriptions, tools, and reasoning
+- **Reordering**: Move steps up/down with visual feedback
+- **AI Revision**: Ask AI to modify individual steps
+- **Undo/Redo**: Complete history with keyboard shortcuts
+- **Visual Indicators**: Confidence levels, agent types, and tool assignments
 
-### `npm run eject`
+### Visual Design
+- **Modern UI**: Clean, professional interface with Tailwind CSS
+- **Responsive**: Works seamlessly on desktop and mobile devices
+- **Interactive Elements**: Hover states, transitions, and visual feedback
+- **Loading States**: Engaging animations during AI processing
+- **Error Handling**: User-friendly error messages with retry options
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## AI Agent Types
+- **Data Agent**: Database and data management tasks
+- **Marketing Agent**: Campaign and communication tasks  
+- **Creative Agent**: Design and content creation tasks
+- **Analytics Agent**: Reporting and analysis tasks
+- **Planning Agent**: Strategy and organization tasks
+- **Execution Agent**: Implementation and operational tasks
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Getting Started
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Installation
+```bash
+npm install
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Development
+```bash
+npm start
+```
 
-## Learn More
+### Build
+```bash
+npm run build
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Future Enhancements
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Potential Improvements
+- **Real AI Integration**: Replace mock service with actual AI API
+- **Step Templates**: Pre-built step templates for common tasks
+- **Workflow Sharing**: Export/import workflows between users
+- **Advanced Analytics**: Detailed workflow performance metrics
+- **Collaboration**: Multi-user editing with real-time sync
+- **Integration Hub**: Connect with external tools and services
+- **Smart Suggestions**: AI-powered workflow optimization recommendations
+
+### Technical Improvements
+- **Persistent Storage**: Save workflows to localStorage or backend
+- **Advanced History**: Branching history with visual timeline
+- **Keyboard Navigation**: Full keyboard accessibility
+- **Drag & Drop**: Enhanced reordering with drag and drop
+- **Bulk Operations**: Select and modify multiple steps at once
+
+## Architecture Benefits
+
+### Maintainability
+- **Component Separation**: Clear separation of concerns
+- **Type Safety**: Full TypeScript coverage prevents runtime errors
+- **Consistent Patterns**: Standardized component and state patterns
+
+### Scalability
+- **Context Pattern**: Easy to extend with additional state
+- **Service Layer**: Clean abstraction for AI service integration
+- **Component Reusability**: Modular components for future features
+
+### User Experience
+- **Responsive Design**: Works on all device sizes
+- **Performance**: Efficient re-renders with proper state management
+- **Accessibility**: Semantic HTML and keyboard support

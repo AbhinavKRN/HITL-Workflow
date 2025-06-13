@@ -1,26 +1,49 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { AppProvider, useAppContext } from './context/AppContext';
+import InputScreen from './components/InputScreen';
+import WorkflowScreen from './components/WorkflowScreen';
+import ConfirmationScreen from './components/ConfirmationScreen';
+import LoadingScreen from './components/LoadingScreen';
+import ErrorDisplay from './components/ErrorDisplay';
+import ErrorBoundary from './components/ErrorBoundary';
+import './index.css';
 
-function App() {
+const AppContent: React.FC = () => {
+  const { state, setError } = useAppContext();
+
+  if (state.isLoading) {
+    return <LoadingScreen />;
+  }
+
+  if (state.error) {
+    return (
+      <ErrorDisplay 
+        error={state.error}
+        onRetry={() => setError(null)}
+      />
+    );
+  }
+
+  switch (state.currentScreen) {
+    case 'input':
+      return <InputScreen />;
+    case 'workflow':
+      return <WorkflowScreen />;
+    case 'confirmation':
+      return <ConfirmationScreen />;
+    default:
+      return <InputScreen />;
+  }
+};
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ErrorBoundary>
+      <AppProvider>
+        <AppContent />
+      </AppProvider>
+    </ErrorBoundary>
   );
-}
+};
 
 export default App;
